@@ -16,9 +16,7 @@ import { ContentComponent } from './content/content.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 
-import { ChartModule } from './chart/chart.module';
 import { ComponentModule } from './component/component.module'
-import { BuyModule} from './buy/buy.module'
 
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
@@ -31,7 +29,6 @@ import { SessionService } from '@shared/auth/session.service';
 import { TokenService } from '@shared/auth/token.service';
 import { ExceptionModule } from './exception/exception.module';
 import { UserComponent } from './pages/user/user.component';
-import { BuycontentComponent } from './buy/buycontent/buycontent.component';
 import { SysuserComponent } from './pages/sysuser/sysuser.component';
 import { UserAddComponent } from './pages/user-add/user-add.component';
 import { UserEditComponent } from './pages/user-edit/user-edit.component' 
@@ -69,7 +66,6 @@ registerLocaleData(zh);
     HomeComponent,
     LoginComponent,
     UserComponent,
-    BuycontentComponent,
     SysuserComponent,
     UserAddComponent,
     UserEditComponent
@@ -81,12 +77,10 @@ registerLocaleData(zh);
     HttpClientModule,
     NgZorroAntdModule,
     AppRoutingModule,
-    ChartModule,
     ComponentModule,
     ReactiveFormsModule,
     ServiceProxiesModule,
     ExceptionModule,
-    BuyModule,
     MomentModule
   ],
   providers: [LoginService,CookieService,AppRouteGuard,SessionService,
