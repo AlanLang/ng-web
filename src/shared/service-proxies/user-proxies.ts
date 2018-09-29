@@ -72,9 +72,9 @@ export class UserPageServiceProxy{
      * @return Success
      */
     getAll(search: string): Observable<PageUserResult> {
-        let url_ = `/api/services/app/User/GetAll`;
+        let url_ = `/User/GetAll`;
         if(search){
-          url_ = `/api/services/app/User/GetAll?UserName=${search}`;
+          url_ = `/User/GetAll?UserName=${search}`;
         }
         url_ = url_.replace(/[?&]$/, "");
         return this.http.get(url_).map((guard: HttpResult) => {
@@ -85,7 +85,7 @@ export class UserPageServiceProxy{
     create(model: UserCreat):Observable<HttpResult>{
       model.roleNames = ["admin"];
       model.isActive = true;
-      let url_ = `/api/services/app/User/Create`;
+      let url_ = `/User/Create`;
       url_ = url_.replace(/[?&]$/, "");
       const content_ = JSON.stringify(model);
       return this.http.post(url_,content_).map((guard: HttpResult) => {
@@ -94,7 +94,7 @@ export class UserPageServiceProxy{
     }
 
     update(model: UserCreat):Observable<HttpResult>{
-      let url_ = `/api/services/app/User/Update`;
+      let url_ = `/User/Update`;
       url_ = url_.replace(/[?&]$/, "");
       const content_ = JSON.stringify(model);
       return this.http.put(url_,content_).map((guard: HttpResult) => {
@@ -103,7 +103,7 @@ export class UserPageServiceProxy{
     }
 
     updatePwd(model):Observable<HttpResult>{
-      let url_ = `/api/services/app/User/UpdatePwd`;
+      let url_ = `/User/UpdatePwd`;
       const content_ = JSON.stringify(model);
       return this.http.put(url_,content_).map((guard: HttpResult) => {
         return guard;
@@ -111,7 +111,7 @@ export class UserPageServiceProxy{
     }
 
     get(id: number): Observable<HttpResult>{
-      let url_ = `/api/services/app/User/Get?id=${id}`;
+      let url_ = `/User/Get?id=${id}`;
       url_ = url_.replace(/[?&]$/, "");
       return this.http.get(url_).map((guard: HttpResult) => {
         return guard;
@@ -119,7 +119,7 @@ export class UserPageServiceProxy{
     }
 
     delete(id: number): Observable<HttpResult>{
-      let url_ = `/api/services/app/User/Delete?id=${id}`;
+      let url_ = `/User/Delete?id=${id}`;
       url_ = url_.replace(/[?&]$/, "");
       return this.http.delete(url_).map((guard: HttpResult) => {
         return guard;
@@ -128,7 +128,7 @@ export class UserPageServiceProxy{
 
     // 获取指定用户的审批人
     getApprovers(id: number):Observable<HttpResult>{
-      let url_ = `/api/services/app/Approver/GetUserApprovers?id=${id}`;
+      let url_ = `/Approver/GetUserApprovers?id=${id}`;
       url_ = url_.replace(/[?&]$/, "");
       return this.http.get(url_).map((guard: HttpResult) => {
         const guard$ = guard;
@@ -137,7 +137,7 @@ export class UserPageServiceProxy{
     }
 
     setApprovers(model: CreateApprover):Observable<HttpResult>{
-      let url_ = `/api/services/app/Approver/Create`;
+      let url_ = `/Approver/Create`;
       url_ = url_.replace(/[?&]$/, "");
       const content_ = JSON.stringify(model);
       return this.http.post(url_,content_).map((guard: HttpResult) => {
@@ -147,7 +147,7 @@ export class UserPageServiceProxy{
     }
 
     removeApprovers(userId,approverId):Observable<HttpResult>{
-      let url_ = `/api/services/app/Approver/Remove?UserId=${userId}&ApproverId=${approverId}`;
+      let url_ = `/Approver/Remove?UserId=${userId}&ApproverId=${approverId}`;
       return this.http.delete(url_).map((guard: HttpResult) => {
         const guard$ = guard;
         return guard;

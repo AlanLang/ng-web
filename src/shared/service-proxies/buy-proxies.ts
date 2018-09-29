@@ -74,7 +74,7 @@ export class BuyListServiceProxy{
 
     Create(model: CreatBuyListDto): Observable<HttpResult> {
     	const content_ = JSON.stringify(model);
-	    let url_ = `/api/services/app/BuyList/Create`;
+	    let url_ = `/BuyList/Create`;
 	    url_ = url_.replace(/[?&]$/, "");
 	    return this.http.post(url_,content_).map((guard: HttpResult) => {
 	      return guard;
@@ -82,7 +82,7 @@ export class BuyListServiceProxy{
     }
 
     Get(id: number): Observable<HttpResult>{
-      let url_ = `/api/services/app/BuyList/Get?id=${id}`;
+      let url_ = `/BuyList/Get?id=${id}`;
       url_ = url_.replace(/[?&]$/, "");
       return this.http.get(url_).map((guard: HttpResult) => {
         return guard;
@@ -91,7 +91,7 @@ export class BuyListServiceProxy{
 
     Update(model: CreatBuyListDto): Observable<HttpResult> {
       const content_ = JSON.stringify(model);
-      let url_ = `/api/services/app/BuyList/Update`;
+      let url_ = `/BuyList/Update`;
       url_ = url_.replace(/[?&]$/, "");
       return this.http.put(url_,content_).map((guard: HttpResult) => {
         return guard;
@@ -99,7 +99,7 @@ export class BuyListServiceProxy{
     }
 
     GetAll(search: string, type: number): Observable<HttpResult>{
-	    let url_ = `/api/services/app/BuyList/GetAll?search=${search}&type=${type}`;
+	    let url_ = `/BuyList/GetAll?search=${search}&type=${type}`;
 	    url_ = url_.replace(/[?&]$/, "");
 	    return this.http.get(url_).map((guard: HttpResult) => {
 	      return guard;
@@ -108,7 +108,7 @@ export class BuyListServiceProxy{
 
     //获取需要审批的列表
     GetNeedCheck(search: string, type:number): Observable<HttpResult>{
-      let url_ = `/api/services/app/BuyList/GetBuysNeedCheck?search=${search}&type=${type}`;
+      let url_ = `/BuyList/GetBuysNeedCheck?search=${search}&type=${type}`;
       url_ = url_.replace(/[?&]$/, "");
       return this.http.get(url_).map((guard: HttpResult) => {
         return guard;
@@ -117,7 +117,7 @@ export class BuyListServiceProxy{
 
     CreatDisscues(model: CreatDisscuesDto): Observable<HttpResult> {
       const content_ = JSON.stringify(model);
-      let url_ = `/api/services/app/Disscues/Create`;
+      let url_ = `/Disscues/Create`;
       url_ = url_.replace(/[?&]$/, "");
       return this.http.post(url_,content_).map((guard: HttpResult) => {
         return guard;
@@ -125,7 +125,7 @@ export class BuyListServiceProxy{
     }
 
     GetDisscues(id: number): Observable<HttpResult> {
-      let url_ = `/api/services/app/Disscues/GetAll?id=${id}`;
+      let url_ = `/Disscues/GetAll?id=${id}`;
       url_ = url_.replace(/[?&]$/, "");
       return this.http.get(url_).map((guard: HttpResult) => {
         return guard;

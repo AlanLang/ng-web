@@ -156,7 +156,8 @@ export class SessionServiceProxy {
      * @return Success
      */
     getCurrentLoginInformations(): Observable<HttpUserLoginInfoResult> {
-        let url_ =   "/api/services/app/Session/GetCurrentLoginInformations";
+        let url_ =   "/Session/GetCurrentLoginInformations";
+        //let url_ =   "/api/heroes";
         return this.http.get(url_).map((guard: HttpUserLoginInfoResult) => {
           const guard$ = guard;
           return guard;
@@ -175,7 +176,7 @@ export class RoleServiceProxy{
      * @return Success
      */
     getRoleInformations(roleId: number): Observable<HttpRolleInfoResult> {
-        let url_ =  `/api/services/app/Role/Get?id=${roleId}`;
+        let url_ =  `/Role/Get?id=${roleId}`;
         url_ = url_.replace(/[?&]$/, "");
         const content_ = JSON.stringify("");
         return this.http.get(url_).map((guard: HttpRolleInfoResult) => {
@@ -196,7 +197,7 @@ export class PermissionServiceProxy{
      * @return Success
      */
     GetUserPermission(roleId: number): Observable<HttpRolleInfoResult> {
-        let url_ =  `/api/services/app/User/GetUserPermission?id=${roleId}`;
+        let url_ =  `/User/GetUserPermission?id=${roleId}`;
         url_ = url_.replace(/[?&]$/, "");
         const content_ = JSON.stringify("");
         return this.http.get(url_).map((guard: HttpRolleInfoResult) => {
