@@ -10,16 +10,15 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { TitleComponent } from './title/title.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ContentComponent } from './content/content.component';
+import { TitleComponent } from './page-component/title/title.component';
+import { SidebarComponent } from './page-component/sidebar/sidebar.component';
+import { ContentComponent } from './page-component/content/content.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { HomeComponent } from './pages/home/home.component';
 
 import { ComponentModule } from './component/component.module'
 
-import { LoginComponent } from './login/login.component';
-import { LoginService } from './login/login.service';
+import { LoginComponent } from './index/login/login.component';
+import { LoginService } from './index/login/login.service';
 import { MyHttpInterceptor }   from '@shared/util/InterceptorService';
 
 import { ServiceProxiesModule } from '../shared/service-proxies/service-proxies.module'
@@ -28,11 +27,9 @@ import { AppRouteGuard } from '@shared/auth/auth-route-guard';
 import { SessionService } from '@shared/auth/session.service';
 import { TokenService } from '@shared/auth/token.service';
 import { ExceptionModule } from './exception/exception.module';
-import { UserComponent } from './pages/user/user.component';
-import { SysuserComponent } from './pages/sysuser/sysuser.component';
-import { UserAddComponent } from './pages/user-add/user-add.component';
-import { UserEditComponent } from './pages/user-edit/user-edit.component' 
+
 import { MomentModule } from 'angular2-moment';
+import { PagesModule } from './pages/pages.module'
 
 
 export function interceptorFactory(tokenService:TokenService){
@@ -63,12 +60,7 @@ registerLocaleData(zh);
     TitleComponent,
     SidebarComponent,
     ContentComponent,
-    HomeComponent,
     LoginComponent,
-    UserComponent,
-    SysuserComponent,
-    UserAddComponent,
-    UserEditComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +73,7 @@ registerLocaleData(zh);
     ReactiveFormsModule,
     ServiceProxiesModule,
     ExceptionModule,
+    PagesModule,
     MomentModule
   ],
   providers: [LoginService,CookieService,AppRouteGuard,SessionService,

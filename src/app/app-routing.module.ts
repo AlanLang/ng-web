@@ -7,8 +7,8 @@ import { UserAddComponent }      from './pages/user-add/user-add.component';
 import { UserEditComponent }      from './pages/user-edit/user-edit.component';
 import { NopermissionComponent }  from './exception/nopermission/nopermission.component'
 
-import { LoginComponent } from './login/login.component';
-import { ContentComponent } from './content/content.component';
+import { LoginComponent } from './index/login/login.component';
+import { ContentComponent } from './page-component/content/content.component';
 import { AppRouteGuard } from '@shared/auth/auth-route-guard';
 
 const appChildRoutes: Routes = [
