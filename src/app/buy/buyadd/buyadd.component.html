@@ -1,0 +1,118 @@
+<div class="buy-add-page">
+	    <nz-breadcrumb style="margin-top: 20px;">
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/buy/home']" >我的购物申请</a>
+    </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+      <a>购物申请添加</a>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-divider style="margin:10px 0px"></nz-divider>
+<form class="buyadd-form" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>物品名称</nz-form-label>
+        <nz-form-control [nzSpan]="isSmall?24:12" nzHasFeedback>
+          <input nz-input formControlName="BuyName" placeholder="请输入物品名称">
+          <nz-form-explain *ngIf="validateForm.get('BuyName').dirty && validateForm.get('BuyName').errors">
+            <ng-container *ngIf="validateForm.get('BuyName').hasError('required')">
+              请输入购物物品名称
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>物品类别</nz-form-label>
+        <nz-form-control [nzSpan]="isSmall?24:12" nzHasFeedback>
+            <nz-select  nzAllowClear formControlName="BuyTypeName" nzPlaceHolder="请选择物品类别">
+              <nz-option nzValue="电子产品" nzLabel="电子产品"></nz-option>
+              <nz-option nzValue="软件游戏" nzLabel="软件游戏"></nz-option>
+              <nz-option nzValue="衣帽饰品" nzLabel="衣帽饰品"></nz-option>
+              <nz-option nzValue="化妆用品" nzLabel="化妆用品"></nz-option>
+              <nz-option nzValue="学习书籍" nzLabel="学习书籍"></nz-option>
+              <nz-option nzValue="吃喝玩乐" nzLabel="吃喝玩乐"></nz-option>
+              <nz-option nzValue="其他" nzLabel="其他"></nz-option>
+            </nz-select>
+          <nz-form-explain *ngIf="validateForm.get('BuyTypeName').dirty&&validateForm.get('BuyTypeName').errors">
+            <ng-container *ngIf="validateForm.get('BuyTypeName').hasError('required')">
+              请输入物品类别
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>物品价格</nz-form-label>
+        <nz-form-control [nzSpan]="isSmall?24:12" nzHasFeedback>
+          <nz-input-group nzAddOnAfter="元">
+            <input nz-input formControlName="BuyPrice" placeholder="请输入物品价格">
+          </nz-input-group>
+          <nz-form-explain *ngIf="validateForm.get('BuyPrice').dirty&&validateForm.get('BuyPrice').errors">
+            <ng-container *ngIf="validateForm.get('BuyPrice').hasError('required')">
+              请输入物品价格
+            </ng-container>
+            <ng-container *ngIf="validateForm.get('BuyPrice').hasError('confirm')">
+              物品价格只能是数字
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>重要程度</nz-form-label>
+        <nz-form-control [nzSpan]="isSmall?24:12" nzHasFeedback>
+          <!-- <input nz-input formControlName="BuyLevel" placeholder="请输入重要程度"> -->
+            <nz-select  nzAllowClear formControlName="BuyLevel" nzPlaceHolder="请选择重要程度">
+              <nz-option nzValue="普通" nzLabel="普通"></nz-option>
+              <nz-option nzValue="重要" nzLabel="重要"></nz-option>
+              <nz-option nzValue="非常重要" nzLabel="非常重要"></nz-option>
+              <nz-option nzValue="不太重要" nzLabel="不太重要"></nz-option>
+              <nz-option nzValue="无所谓" nzLabel="无所谓"></nz-option>
+            </nz-select>
+          <nz-form-explain *ngIf="validateForm.get('BuyLevel').dirty&&validateForm.get('BuyLevel').errors">
+            <ng-container *ngIf="validateForm.get('BuyLevel').hasError('required')">
+              请输入重要程度
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>购买地址</nz-form-label>
+        <nz-form-control [nzSpan]="isSmall?24:12" nzHasFeedback>
+          <input nz-input formControlName="BuyUrl" placeholder="请输入物品购买地址">
+          <nz-form-explain *ngIf="validateForm.get('BuyUrl').dirty&&validateForm.get('BuyUrl').errors">
+            <ng-container *ngIf="validateForm.get('BuyUrl').hasError('required')">
+              请输入购买地址
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>购买时间</nz-form-label>
+        <nz-form-control [nzSpan]="isSmall?24:12" nzHasFeedback>
+          <nz-date-picker formControlName="BuyTime"></nz-date-picker>
+          <nz-form-explain *ngIf="validateForm.get('BuyTime').dirty&&validateForm.get('BuyTime').errors">
+            <ng-container *ngIf="validateForm.get('BuyTime').hasError('required')">
+              请输入购买时间
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">描述</nz-form-label>
+        <nz-form-control [nzSpan]="isSmall?24:12" >
+          <textarea formControlName="BuyDesc" nz-input rows="2" placeholder="随便填填呗"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control [nzOffset]="isSmall?0:7" [nzSpan]="isSmall?24:12">
+          <button nz-button nzType="primary" [nzLoading]="isLoading" [disabled]="!validateForm.valid">提交</button>
+          <button nz-button (click)="resetForm($event)">重置</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+</div>

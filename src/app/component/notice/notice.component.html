@@ -1,0 +1,23 @@
+<span class="notice" (click)="onClickNotice()" (mouseenter) ="mouseEnter(false)" (mouseleave) ="mouseLeave(false)">
+	<i class="anticon anticon-bell"></i>
+	<nz-badge nzDot={{hasDot}}></nz-badge>
+</span>
+<div class="notice-content" *ngIf='showBar' (mouseenter) ="mouseEnter(true)" (mouseleave) ="mouseLeave(true)">
+	<div class="notice-content-title">
+		审批提醒通知
+	</div>
+	<div class="notice-content-message-group" *ngIf="notices">
+		<div class="notice-content-message" *ngFor="let notice of notices">
+			<span (click)="openCheck(notice.id)" class="notice-link">{{notice.buyName}} @{{notice.buyAuthor}}</span>
+			<span class="notice-time">{{notice.creationTime| amLocale:'zh-cn' | amTimeAgo}}</span>
+		</div>
+	</div>
+	<div *ngIf="notices.length == 0" class="notice-content-message no-notice">
+		<i class="anticon anticon-smile-o"></i>
+		暂无审批数据
+	</div>
+	<div class="notice-content-foot" (click)="openAllCheck()">
+		<i class="anticon anticon-eye"></i>
+		查看全部审批
+	</div>
+</div>

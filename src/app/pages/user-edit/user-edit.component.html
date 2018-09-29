@@ -1,0 +1,169 @@
+<div class="page">
+	<nz-breadcrumb>
+	  <nz-breadcrumb-item>
+	    系统管理
+	  </nz-breadcrumb-item>
+	  <nz-breadcrumb-item>
+	    <a [routerLink]="['/page/user']">用户管理</a>
+	  </nz-breadcrumb-item>
+  	  <nz-breadcrumb-item>
+	    <a>用户修改</a>
+	  </nz-breadcrumb-item>
+	</nz-breadcrumb>
+	<nz-divider style="margin:10px 0px"></nz-divider>
+
+	<nz-divider nzText="用户资料" nzOrientation="left"></nz-divider>
+
+	<form class="buyadd-form" nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>用户名</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback>
+          <input nz-input formControlName="userName" >
+          <input nz-input formControlName="id" style="display: none;" >
+          <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">
+            <ng-container *ngIf="validateForm.get('userName').hasError('required')">
+              请输入用户名
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>姓</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback>
+          <input nz-input formControlName="surname">
+          <nz-form-explain *ngIf="validateForm.get('surname').dirty && validateForm.get('surname').errors">
+            <ng-container *ngIf="validateForm.get('surname').hasError('required')">
+              请输入姓氏
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>  
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>名</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback>
+          <input nz-input formControlName="name">
+          <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">
+            <ng-container *ngIf="validateForm.get('name').hasError('required')">
+              请输入名字
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item> 
+
+    	<nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>邮箱</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback>
+          <input nz-input formControlName="emailAddress">
+          <nz-form-explain *ngIf="validateForm.get('emailAddress').dirty&&validateForm.get('emailAddress').errors">
+            <ng-container *ngIf="validateForm.get('emailAddress').hasError('email')">
+              这不是一个正确的邮箱地址
+            </ng-container>
+            <ng-container *ngIf="validateForm.get('emailAddress').hasError('required')">
+              	请输入你的邮箱
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control [nzOffset]="7" [nzSpan]="12">
+          <button nz-button nzType="primary" [nzLoading]="isLoading" [disabled]="!validateForm.valid">保存</button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-divider nzText="密码修改" nzOrientation="left"></nz-divider>
+
+      <form class="buyadd-form" nz-form [formGroup]="searchForm" (ngSubmit)="submitSearchForm($event,searchForm.value)">
+         <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>密码</nz-form-label>
+          <div>
+            <nz-form-control [nzSpan]="12" nzHasFeedback>
+              <input nz-input formControlName="id" style="display: none;" >
+              <input nz-input type="password" formControlName="password" (ngModelChange)="validateConfirmPassword()">
+              <nz-form-explain *ngIf="searchForm.get('password').dirty&&searchForm.get('password').hasError('required')">
+                请输入密码
+              </nz-form-explain>
+            </nz-form-control>
+          </div>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>密码确认</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <input nz-input type="password" formControlName="confirm">
+            <nz-form-explain *ngIf="searchForm.get('confirm').dirty&&searchForm.get('confirm').errors">
+              <ng-container *ngIf="searchForm.get('confirm').hasError('required')">
+                请输入确认密码
+              </ng-container>
+              <ng-container *ngIf="searchForm.get('confirm').hasError('confirm')">
+                两次输入的密码不一致
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>  
+
+        <nz-form-item>
+          <nz-form-control [nzOffset]="7" [nzSpan]="12">
+            <button nz-button nzType="primary" [nzLoading]="changePwdLoading" [disabled]="!searchForm.valid">保存</button>
+          </nz-form-control>
+        </nz-form-item>
+        </form>
+	     </form>
+    <nz-divider nzText="审批人" nzOrientation="left"></nz-divider>
+    <div nz-row nzType="flex" nzJustify="center">
+      <div nz-col [nzSpan]="20">
+        <nz-select [(ngModel)]="ApproverValue" style="width: 100%;" nzMode="multiple" nzPlaceHolder="查询并为用户分配审批人" nzAllowClear nzShowSearch [nzServerSearch]="true" (nzOnSearch)="onSearch($event)">
+          <ng-container *ngFor="let item of optionList">
+            <nz-option *ngIf="!searchLoading" nzCustomContent nzLabel="{{item.surname}}{{item.name}}" nzValue="{{item.id}}">
+              <div>{{item.surname}}{{item.name}}</div>
+              <div>@{{item.userName}}</div>
+            </nz-option>
+          </ng-container>
+          <nz-option *ngIf="searchLoading" nzDisabled nzCustomContent>
+            <i class="anticon anticon-loading anticon-spin loading-icon"></i> 正在加载
+          </nz-option>
+        </nz-select>
+
+        <button style="margin-top: 20px;" (click)="onAddApprover()" nz-button nzType="primary" [nzLoading]="approverLoading" [disabled]="!ApproverValue" >添加
+        </button>
+
+        <nz-list style="margin-top: 20px;" [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="approverLoading" nzBordered [nzHeader]="'审批人列表'">
+          <ng-template #item let-item>
+            <nz-list-item [nzActions]="[editAction]">
+              <ng-template #editAction><a nz-popconfirm nzTitle="你确定要删除此审批人?" (nzOnConfirm)="approverDelete(item.id)" >删除</a></ng-template>
+              <nz-list-item-meta
+                [nzTitle]="nzTitle"
+                [nzDescription]="nzDescription">
+                <ng-template #nzTitle>
+                  <a [routerLink]="['/page/useredit/'+item.id]" >{{item.surname}}{{item.name}}@{{item.userName}}</a>
+                </ng-template>
+                <ng-template #nzDescription>
+                  {{item.emailAddress}}
+                </ng-template>
+              </nz-list-item-meta>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+
+      </div>
+    </div>
+    <nz-divider nzText="其他操作" nzOrientation="left"></nz-divider>
+    <div nz-row nzType="flex" nzJustify="center">
+      <nz-collapse nz-col [nzSpan]="20">
+        <nz-collapse-panel [nzHeader]="'停用'" [nzActive]="true" [nzDisabled]="false">
+          <p style="margin:0;">停用用户后此用户将无法再使用本系统</p>
+          <p style="margin:0;">用户的操作记录会保留。</p>
+          <p style="margin:0;">已停用的用户仍可以恢复启用</p>
+          <button style="margin-top: 10px;" nz-button nzType="default" (click)="userClose()">停用用户</button>
+        </nz-collapse-panel>
+        <nz-collapse-panel [nzHeader]="'删除'" [nzActive]="true" [nzDisabled]="false">
+          <p style="margin:0;">删除用户后该用户将无法再使用本系统。</p>
+          <p style="margin:0;">用户的操作记录会保留。</p>
+          <p style="margin:0;font-weight: bold;">用户删除后将不可恢复！</p>
+          <button style="margin-top: 10px;" nz-button nzType="danger" nz-popconfirm nzTitle="你确定要删除此用户?" (nzOnConfirm)="userDelete()">删除用户</button>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </div>
+    <nz-divider nzText="我是有底线的"></nz-divider>
+</div>

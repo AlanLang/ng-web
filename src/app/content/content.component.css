@@ -1,0 +1,22 @@
+.content-div{
+	/*background-color: #f0f2f5;*/
+    background-color: white;
+	width: auto;
+	position: absolute;
+	bottom: 0px;
+	top: 40px;
+	right: 0px;
+    z-index: 1;
+    /*padding: 15px;*/
+    overflow-y: auto;
+}
+.content-loading{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 37px;
+    width: 37px;
+    margin: auto;
+}

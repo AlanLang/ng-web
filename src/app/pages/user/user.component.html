@@ -1,0 +1,39 @@
+<app-breadcrumb [titles]='titles'></app-breadcrumb>
+<app-search-page>
+<app-search-form [isLoading]='searchLoading' [formOptions]='formOptions' [showNum]="3" 
+(formCommit) = 'onFormSearch($event)'
+(formReset) = 'onFormReset($event)'>
+</app-search-form>
+<app-button-group>
+    <button nz-button nzType="primary"><i class="anticon anticon-plus"></i>新增</button>
+</app-button-group>
+<nz-table
+      #ajaxTable
+      nzShowSizeChanger
+      nzBordered
+      nzHideOnSinglePage="true"
+      [nzFrontPagination]="false"
+      [nzData]="dataSet"
+      [nzLoading]="loading"
+      [nzTotal]="total"
+      [(nzPageIndex)]="pageIndex"
+      [(nzPageSize)]="pageSize"
+      (nzPageIndexChange)="searchData()"
+      (nzPageSizeChange)="searchData(true)">
+      <thead (nzSortChange)="sort($event)" nzSingleSort >
+        <tr>
+          <th nzShowSort nzSortKey="name">姓名</th>
+          <th nzShowFilter [nzFilters]="filterGender" (nzFilterChange)="updateFilter($event)">用户名</th>
+          <th nzShowSort nzSortKey="emailAddress"><span>邮箱地址</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of ajaxTable.data">
+          <td>{{data.name}} {{data.surname}}</td>
+          <td>{{data.userName}}</td>
+          <td>{{data.emailAddress}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+</app-search-page>
+<app-copyright></app-copyright>

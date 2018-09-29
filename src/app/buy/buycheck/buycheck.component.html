@@ -1,0 +1,19 @@
+<div class="buy-item-group">
+	<nz-breadcrumb style="margin-top: 20px;">
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/buy/history']" >全部购物审批</a>
+    </nz-breadcrumb-item>
+      <nz-breadcrumb-item>
+      <a>审批详情</a>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-divider style="margin:10px 0px"></nz-divider>
+  <nz-list [nzDataSource]="datas" nzBordered
+           [nzHeader]="title"
+           [nzRenderItem]="item"
+           [nzLoading]="listLoading">
+    <ng-template #item let-item><nz-list-item [nzContent]="item"></nz-list-item></ng-template>
+  </nz-list>
+  <nz-divider style="margin:10px 0px"></nz-divider>
+  <app-discusses id="{{id}}"></app-discusses>
+</div>

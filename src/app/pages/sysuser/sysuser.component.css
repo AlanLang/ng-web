@@ -1,0 +1,18 @@
+.page{
+	max-width: 1300px;
+	margin: 15px auto;
+	padding: 0 15px;
+}
+
+.list-add{
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+}
+.list-add button:hover {
+  -webkit-transform: rotateZ(360deg);
+  -moz-transform: rotateZ(360deg);
+  -ms-transform: rotateZ(360deg);
+  -o-transform: rotateZ(360deg);
+  transform: rotateZ(360deg);
+}

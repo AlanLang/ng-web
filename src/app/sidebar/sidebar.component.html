@@ -1,0 +1,27 @@
+<ul class="sidebar-group" nz-menu [nzMode]="'inline'" nzTheme='dark' [nzInlineCollapsed]="!isCollapsed">
+  <nz-input-group class="menu-search-group" nzSuffixIcon="anticon anticon-search">
+    <input type="text" class="menu-search" nz-input placeholder="查询">
+  </nz-input-group>
+  <li *ngFor="let menu of menus" nz-submenu [nzOpen]="this.canOpen(menu)">
+    <span title>
+      <i class="anticon" [ngClass]="menu.icon"></i>
+      <span>{{menu.title}}</span>
+    </span>
+    <ul>
+      <span *ngFor="let cmenu of menu.child">
+        <li *ngIf="cmenu.child == null" nz-menu-item routerLink="{{cmenu.url}}" nzSelected="{{cmenu.url == this.url}}">
+          <span title>{{cmenu.title}}</span>
+        </li>
+        <li *ngIf="cmenu.child != null" nz-submenu [nzOpen]="this.canOpen(cmenu)">
+          <span title>{{cmenu.title}}</span>
+            <ul>
+              <li *ngFor="let ccmenu of cmenu.child" nz-menu-item routerLink="{{ccmenu.url}}" nzSelected="{{ccmenu.url == this.url}}" >{{ccmenu.title}}</li>
+            </ul>
+        </li>
+      </span>
+    </ul>
+  </li>
+  <div class="sidebar-button" (click)="toggleCollapsed()">
+      <i class="anticon" [class.anticon-double-left]="isCollapsed" [class.anticon-double-right]="!isCollapsed"></i>
+  </div>  
+</ul>

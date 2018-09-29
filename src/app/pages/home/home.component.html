@@ -1,0 +1,21 @@
+<div class="page">
+  <nz-carousel nzAutoPlay class="nz-carousel-content">
+      <div nz-carousel-content  *ngFor="let index of array"><h3>{{index}}</h3></div>
+  </nz-carousel>
+  <div nz-row nzType="flex" nz-row nzGutter="16">
+
+      <div nz-col nzSpan="6" [nzOrder]="order">
+      <app-chart-wave-line [chartTitle]="'消费统计'" [chartData]='ProductData' [chartColor] = "'#975FE4'" [chartText]="'今日消费：120'">
+      </app-chart-wave-line>
+    </div>
+    <div nz-col nzSpan="6" [nzOrder]="order">
+      <app-chart-bar></app-chart-bar>
+    </div>
+      <div nz-col nzSpan="6" [nzOrder]="order">
+      <app-chart-wave-line [chartTitle]="'审批记录'" [chartData]='personData' [chartColor] = "'#2fc25b'" [chartText]="'今日审批数：1'"></app-chart-wave-line>
+    </div>
+      <div nz-col nzSpan="6" [nzOrder]="order">
+    <app-chart-plan></app-chart-plan>
+    </div>
+  </div>
+</div>

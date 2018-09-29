@@ -1,0 +1,43 @@
+<div class="buyhome-group">
+	<nz-breadcrumb style="margin-top: 20px;">
+    <nz-breadcrumb-item>
+      <a [routerLink]="['/buy/home']" >全部购物审批</a>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-divider style="margin:10px 0px"></nz-divider>
+    <div class="buyhome-search">
+    <nz-input-group nzSearch [nzSuffix]="suffixButton">
+      <input type="text" nz-input #searchBox (keyup.enter)="onSearch(searchBox.value)" placeholder="请输入查询条件">
+    </nz-input-group>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" [nzLoading]="isLoading" (click)="onSearch(searchBox.value)" nzSearch>查询</button>
+    </ng-template>    
+  </div>
+  <nz-list [nzDataSource]="data" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="isLoading" >
+	  <ng-template #item let-item>
+	    <nz-list-item  [nzActions]="[starAction,nzTime]" [nzExtra]="extra">
+	       <ng-template #starAction>
+	        <nz-tag [nzColor]="'blue'" *ngIf="item.buyState == 0">审批中</nz-tag>
+	        <nz-tag [nzColor]="'blue'" *ngIf="item.buyState == 1">审批中</nz-tag>
+	        <nz-tag [nzColor]="'red'" *ngIf="item.buyState == 2">被拒绝</nz-tag>
+	        <nz-tag [nzColor]="'purple'" *ngIf="item.buyState == 3">已通过</nz-tag>
+	        <nz-tag [nzColor]="'volcano'" *ngIf="item.buyState == 4">不买了</nz-tag>
+	        <nz-tag [nzColor]="'cyan'" *ngIf="item.buyState == 5">已购买</nz-tag>
+	      </ng-template>
+	      <ng-template #nzTime><span nz-tooltip nzTitle="{{item.buyTime}}">{{item.creationTime| amLocale:'zh-cn' | amTimeAgo}}</span></ng-template>
+	      <nz-list-item-meta
+	        [nzTitle]="nzTitle"
+	        [nzDescription]="nzDescription">
+	        <ng-template #nzTitle>
+	          <a (click)="onListClick(item.id)">{{item.buyName}}</a>
+	        </ng-template>
+	        <ng-template #nzDescription>
+	          {{item.buyLevel}}
+	        </ng-template>
+	      </nz-list-item-meta>
+	    </nz-list-item>
+	  </ng-template>
+	</nz-list>
+	<nz-divider *ngIf='data.length > 0' style="color: #bfbfbf;margin-top: 10px;" nzText="我是有底线的"></nz-divider>
+	<nz-divider *ngIf='data.length === 0' style="color: #bfbfbf;margin-top: 10px;" nzText="暂无数据"></nz-divider>
+</div>

@@ -1,0 +1,28 @@
+.sidebar-button{
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	background: #4a5064;
+	color: #aeb9c2;
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+}
+.sidebar-group{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	top: 40px;
+	height: auto;
+	max-width: 200px;
+	border-top: 1px solid #2a2f32;
+}
+.menu-search{
+    border-radius: 0px;
+		background-color: #4a5064;
+		background-image: none;
+		border: 1px solid #4a5064;
+		font-size: 13px;
+    color: white;
+}

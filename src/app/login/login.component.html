@@ -1,0 +1,43 @@
+ <div class="login-page">
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <div class="login-title">
+      <div class="login-title1">SPAL</div>
+      <div class="login-title2">欢迎使用购物审批系统</div>
+    </div>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="anticon anticon-user">
+          <input type="text" nz-input  formControlName="userName" placeholder="用户名">
+        </nz-input-group>
+        <nz-form-explain *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">请输入用户名</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="anticon anticon-lock">
+          <input type="password" nz-input formControlName="password" placeholder="密码">
+        </nz-input-group>
+        <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">请输入密码</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <label nz-checkbox formControlName="remember">
+          <span>记住我</span>
+        </label>
+        <a class="login-form-forgot" (click)="ngHelp()" class="login-form-forgot">忘记密码？</a>
+        <button nz-button class="login-form-button" [nzType]="'primary'" [nzLoading]="isLoading">登录</button>
+<!--         或者
+        <a href="">注册用户</a> -->
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <div class="globalFooter___3uaww">
+    <div class="links___lgymZ">
+      <a target="_self" (click)="ngHelp()">帮助</a>
+      <a target="_self" (click)="ngHelp()">隐私</a>
+      <a target="_self" (click)="ngHelp()">条款</a>
+    </div>
+    <div class="copyright___3hV2q">Copyright <i class="anticon anticon-copyright"></i> 2018 购物审批系统 V0.1</div>
+  </div>
+</div> 

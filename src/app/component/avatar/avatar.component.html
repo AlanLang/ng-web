@@ -1,0 +1,11 @@
+<nz-avatar (click)="onClickAvatar()" class="app-avatar"  nzText={{nzText}} nzIcon={{nzIcon}} nzSrc={{nzSrc}} (mouseenter) ="mouseEnter(false)" (mouseleave) ="mouseLeave(false)"></nz-avatar>
+<div class="avatar-bar" *ngIf='showBar' (mouseenter) ="mouseEnter(true)" (mouseleave) ="mouseLeave(true)">
+<div class="bar-user">
+	<nz-avatar nzText={{nzText}} nzIcon={{nzIcon}} nzSrc={{nzSrc}}></nz-avatar>
+	<div class="bar-user-name">{{userName}}</div>
+</div>
+<div class="bar-content">
+	<ng-content></ng-content>
+</div>
+<div class="bar-exit" (click)="logOut()">退出系统</div>
+</div>

@@ -1,0 +1,29 @@
+<form nz-form [formGroup]="validateForm" class="search-form" nzLayout="inline">
+<div style="display: inline; margin-left: 10px;" *ngFor="let control of formOptions">
+  <nz-form-item *ngIf='control.show && control.type=="input"'>
+    <nz-form-label [nzFor]="control.name">{{control.title}}</nz-form-label>
+    <nz-form-control>
+      <input  nz-input placeholder="{{control.placeholder}}" [formControlName]="control.name" [attr.id]="control.name">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nzFlex *ngIf='control.show && control.type=="select"'>
+    <nz-form-label [nzFor]="control.name">{{control.title}}</nz-form-label>
+    <nz-form-control>
+      <nz-select  nzShowSearch nzAllowClear nzPlaceHolder="{{control.placeholder}}"[formControlName]="control.name" [attr.id]="control.name">
+        <nz-option *ngFor='let opt of control.options' nzLabel="{{opt.name}}" nzValue="{{opt.value}}"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+</div>
+
+<nz-form-item>
+<nz-form-control>
+<button nz-button (click)="onSubmit()" [nzLoading]="isLoading" [nzType]="'primary'">搜索</button>
+  <button nz-button (click)="resetForm()">重置</button>
+  <a style="margin-left:8px;font-size:12px;" (click)="toggleCollapse()" *ngIf='showCollapse'>
+    {{isCollapse?'展开':'收起'}}
+    <i class="anticon" [class.anticon-down]="isCollapse" [class.anticon-up]="!isCollapse"></i>
+  </a>
+</nz-form-control>
+</nz-form-item>
+</form>

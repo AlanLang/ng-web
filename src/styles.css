@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+.ant-menu-dark, .ant-menu-dark .ant-menu-sub{
+	/*外菜单颜色*/
+	background-color: #373d41;
+}
+.ant-menu-dark .ant-menu-inline.ant-menu-sub{
+	/*菜单展开后的颜色*/
+	background-color: #333333;
+}
+.ant-form-item{
+	margin-bottom: 10px;
+}
+/*菜单栏上的搜索图表*/
+.menu-search + span{
+	color: #bfbfbf !important;
+}
+.ant-tabs-bar{
+	margin-bottom: 0px;
+}
