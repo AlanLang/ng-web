@@ -75,23 +75,22 @@ export class MyHttpInterceptor implements HttpInterceptor {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.tokenService.token()
       },
-      //url: `${AppConsts.apiUrl}/${request.url}`
       url: `${AppConsts.apiUrl}${httpUrl}`
     });
 
     return next.handle(authRequest)
       .pipe(
         mergeMap((event: any) => {
-          // 允许统一对请求错误处理，这是因为一个请求若是业务上错误的情况下其HTTP请求的状态是200的情况下需要
+          //业务处理
           if (event instanceof HttpResponse && event.status === 200)
-          return this.handleData(event);
+            return this.handleData(event);
           // 若一切都正常，则后续操作
           return of(event);
         }),
         catchError(err => {
           if (err.status<200 || err.status>=300){
             console.error(err);
-            this.nzMessage.error("接口访问错误");
+            this.nzMessage.error("网络连接异常或接口地址不存在！");
           }
           return throwError(err);
         })
