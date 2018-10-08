@@ -136,10 +136,9 @@ export class UserEditComponent implements OnInit {
           }
         }, 
         (err) => {
-          this.nzMessage.error(err);
+          this.isLoading = false;
         })
       }
-
   submitSearchForm = ($event, value) =>{
     $event.preventDefault();
     for (const key in this.searchForm.controls) {
@@ -158,7 +157,7 @@ export class UserEditComponent implements OnInit {
       }
     }, 
     (err) => {
-      this.nzMessage.error(err.error.message);
+      this.searchLoading = false;
     })
   }
   onSearch(value: string): void {
@@ -170,7 +169,9 @@ export class UserEditComponent implements OnInit {
       this.searchLoading = false;
       this.optionList = re.items;
     }, 
-    (err) => {})
+    (err) => {
+      this.searchLoading = false;
+    })
   }
 
   onAddApprover(): void {
@@ -187,7 +188,6 @@ export class UserEditComponent implements OnInit {
     .subscribe((re:HttpResult) => {
       this.getApprover();
     },(err)=>{
-      this.nzMessage.error(err.error.message);
       this.approverLoading = true;
     })
   }
