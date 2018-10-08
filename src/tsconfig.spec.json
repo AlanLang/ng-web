@@ -6,7 +6,15 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+    "@abp": [ "./shared/abp/" ],
+    "@abp/*": [ "./shared/abp/*" ],
+    "@app/*": [ "./app/*" ],
+    "@shared/*": [ "./shared/*" ],
+    "@env/*": [ "./environments/*" ],
+    "@node_modules/*": [ "../node_modules/*" ]
+    }
   },
   "files": [
     "test.ts",

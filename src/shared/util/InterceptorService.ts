@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import {HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpErrorResponse,HttpResponse} from '@angular/common/http';
 import { catchError,mergeMap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
-import { AppConsts } from '@shared/AppConsts'
 import { TokenService } from  '@shared/auth/token.service'
 import { NzMessageService } from 'ng-zorro-antd';
+import { environment } from '@env/environment';
 
 @Injectable()
 export class MyHttpInterceptor implements HttpInterceptor {
@@ -75,7 +75,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.tokenService.token()
       },
-      url: `${AppConsts.apiUrl}${httpUrl}`
+      url: `${environment.SERVER_URL}${httpUrl}`
     });
 
     return next.handle(authRequest)
