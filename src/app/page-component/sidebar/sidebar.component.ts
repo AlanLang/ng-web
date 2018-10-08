@@ -39,4 +39,7 @@ export class SidebarComponent implements OnInit {
       return true;
     }else{return false;}
   }
+  menuSearch(event): void {
+    console.log(event);
+  }
 }

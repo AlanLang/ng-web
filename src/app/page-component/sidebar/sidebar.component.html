@@ -1,6 +1,6 @@
 <ul class="sidebar-group" nz-menu [nzMode]="'inline'" nzTheme='dark' [nzInlineCollapsed]="!isCollapsed">
   <nz-input-group class="menu-search-group" nzSuffixIcon="anticon anticon-search">
-    <input type="text" class="menu-search" nz-input placeholder="查询">
+    <input type="text" class="menu-search" (ngModelChange)="menuSearch($event)" nz-input placeholder="查询">
   </nz-input-group>
   <li *ngFor="let menu of menus" nz-submenu [nzOpen]="this.canOpen(menu)">
     <span title>
