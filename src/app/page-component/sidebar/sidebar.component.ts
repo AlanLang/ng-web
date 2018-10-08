@@ -23,8 +23,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.menus = this.sidebarService.getMenus();
-    this.url = location.pathname;
-    console.log(this.menus[0].child.find((element) => (element.url == this.url)));
+    this.url = location.hash.replace("#","");
   }
 
   toggleCollapsed(): void {
