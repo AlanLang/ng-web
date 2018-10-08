@@ -32,10 +32,6 @@ import { MomentModule } from 'angular2-moment';
 import { PagesModule } from './pages/pages.module'
 
 
-export function interceptorFactory(tokenService:TokenService){
-   let service = new MyHttpInterceptor(tokenService);
-   return service;
-}
 
 export function appInitializerFactory(injector: Injector) {
   return () => {
