@@ -30,7 +30,6 @@ import { ExceptionModule } from './exception/exception.module';
 
 import { MomentModule } from 'angular2-moment';
 import { PagesModule } from './pages/pages.module'
-import { SidebarSearchComponent } from './page-component/sidebar-search/sidebar-search.component';
 
 
 export function appInitializerFactory(injector: Injector) {
@@ -57,7 +56,6 @@ registerLocaleData(zh);
     SidebarComponent,
     ContentComponent,
     LoginComponent,
-    SidebarSearchComponent,
   ],
   imports: [
     BrowserModule,

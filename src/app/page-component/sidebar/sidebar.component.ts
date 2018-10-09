@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
   searchList = [];
   keyword = "";
   url = "";
+  selectIndex = 0;
 
   constructor(
     private router: Router,
@@ -43,9 +44,18 @@ export class SidebarComponent implements OnInit {
   }
   menuSearch(event): void {
     this.keyword = event.srcElement.value;
-    // 待重构，将子菜单添加到可检索的目录里
     this.searchList = [];
     this.loadSearchMenu(this.menus);
+    if(event.key === "ArrowDown"){
+      this.keyDown();
+    }
+    if(event.key === "ArrowUp"){
+      this.keyUp();
+    }
+    if(event.key === "Enter"){
+      this.keyEnter();
+      event.srcElement.value = "";
+    }
   }
   toPinyin(key): string {
     return pinyin(key,{style:pinyin.STYLE_NORMAL}).join("");
@@ -64,5 +74,20 @@ export class SidebarComponent implements OnInit {
         }
       }
     }
+  }
+
+  keyDown():void {
+    if(this.selectIndex < this.searchList.length - 1){
+      this.selectIndex ++;
+    }
+  }
+  keyUp():void {
+    if(this.selectIndex > 0){
+      this.selectIndex--;
+    }
+  }
+  keyEnter():void {
+    this.router.navigateByUrl(this.searchList[this.selectIndex].value);
+    this.searchList = [];
   }
 }

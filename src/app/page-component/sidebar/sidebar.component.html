@@ -25,4 +25,9 @@
       <i class="anticon" [class.anticon-double-left]="isCollapsed" [class.anticon-double-right]="!isCollapsed"></i>
   </div>  
 </ul>
-<app-sidebar-search [list]="searchList" ></app-sidebar-search>
+
+<div *ngIf="searchList.length > 0" style="min-width: 180px;top: 43px;position: absolute;text-align: left;left: 200px;z-index: 1001;">
+  <div class="sbdd_b">
+    <div *ngFor="let item of searchList; let i = index" class="search-item" [ngClass]="{'select': selectIndex === i }">{{item.name}}</div>
+  </div>
+</div>
