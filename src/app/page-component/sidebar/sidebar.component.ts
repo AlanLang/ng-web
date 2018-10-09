@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
 	@Output () nzCollapsedChange = new EventEmitter<boolean>();
   
   menus = [];
-
+  keyword = "";
   url = "";
 
   constructor(
@@ -35,11 +35,14 @@ export class SidebarComponent implements OnInit {
     this.router.navigateByUrl("home");
   }
   canOpen(menu): boolean{
+    if(this.keyword){
+      return true;
+    }
     if (menu.child && menu.child.find((element) => (element.url == this.url))) {
       return true;
     }else{return false;}
   }
   menuSearch(event): void {
-    console.log(event);
+    this.keyword = event.srcElement.value;
   }
 }

@@ -30,7 +30,7 @@ import { ExceptionModule } from './exception/exception.module';
 
 import { MomentModule } from 'angular2-moment';
 import { PagesModule } from './pages/pages.module'
-
+import { PinyinCnModule } from 'ng-pinyin-engine';
 
 
 export function appInitializerFactory(injector: Injector) {
@@ -70,7 +70,8 @@ registerLocaleData(zh);
     ServiceProxiesModule,
     ExceptionModule,
     PagesModule,
-    MomentModule
+    MomentModule,
+    PinyinCnModule
   ],
   providers: [LoginService,CookieService,AppRouteGuard,SessionService,
   { provide: HTTP_INTERCEPTORS, useClass: MyHttpInterceptor, multi: true},
