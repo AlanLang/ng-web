@@ -10,6 +10,9 @@
   line-height: 25px;
   padding-left: 20px;
 }
+.search-item: first{
+  background-color: #e8e8e8;
+}
 .select{
   background-color: #e8e8e8;
 }

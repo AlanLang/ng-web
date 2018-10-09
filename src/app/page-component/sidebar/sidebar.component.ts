@@ -23,34 +23,9 @@ export class SidebarComponent implements OnInit {
     private sidebarService: SidebarService,) { }
 
   ngOnInit() {
-    console.log(pinyin("中心").STYLE_NORMAL);
     this.menus = this.sidebarService.getMenus();
     this.url = location.hash.replace("#","");
-    // 待重构，将子菜单添加到可检索的目录里
-    for(let menu of this.menus){
-      if(menu.child){
-         for(let child of menu.child){
-           if(child.child){
-             for(let ch of child.child){
-               this.searchList.push({
-                  name:ch.title,
-                  value:ch.url
-                })
-             }
-           }else{
-            this.searchList.push({
-              name:child.title,
-              value:child.url
-            })
-           }
-         }
-      }else{
-        this.searchList.push({
-          name:menu.title,
-          value:menu.url
-        })
-      }
-    }
+
   }
 
   toggleCollapsed(): void {
@@ -68,5 +43,26 @@ export class SidebarComponent implements OnInit {
   }
   menuSearch(event): void {
     this.keyword = event.srcElement.value;
+    // 待重构，将子菜单添加到可检索的目录里
+    this.searchList = [];
+    this.loadSearchMenu(this.menus);
+  }
+  toPinyin(key): string {
+    return pinyin(key,{style:pinyin.STYLE_NORMAL}).join("");
+  }
+
+  loadSearchMenu(menu): void {
+    for(let item of menu){
+      if(item.child){
+        this.loadSearchMenu(item.child);
+      }else{
+        if(this.keyword && this.toPinyin(item.title).indexOf(this.keyword) >= 0){
+          this.searchList.push({
+            name:item.title,
+            value:item.url
+          });
+        }
+      }
+    }
   }
 }

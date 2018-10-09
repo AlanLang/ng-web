@@ -11,7 +11,8 @@ export class SidebarSearchComponent implements OnInit {
     name:string;
     value:string;
   }
-  @Input() list:item[] = [{name:"峨山扯过",value:"123"}]; 
+  @Input() list:item[] = [{name:"峨山扯过",value:"123"}];
+  selectIndex = 0;
   constructor() { }
 
   ngOnInit() {
